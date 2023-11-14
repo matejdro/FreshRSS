@@ -748,7 +748,7 @@ class FreshRSS_Feed extends Minz_Model {
 	 */
 	public function incPendingUnread(int $n = 1): void {
 		$this->nbPendingNotRead += $n;
-		Minz_Log::debug(__METHOD__ . " increment pending unread " . $this->nbPendingNotRead . " " . $this->title);
+		Minz_Log::debug(__METHOD__ . " increment pending unread " . $this->nbPendingNotRead . " " . $this->name);
 	}
 
 	/**
@@ -762,7 +762,7 @@ class FreshRSS_Feed extends Minz_Model {
 			$keepMaxUnread = FreshRSS_Context::$user_conf->mark_when['max_n_unread'];
 		}
 		$keepMaxUnread = (int)$keepMaxUnread;
-		Minz_Log::warning(__METHOD__ . " " . $keepMaxUnread . " ". $this->nbPendingNotRead . " " . $this->title);
+		Minz_Log::warning(__METHOD__ . " " . $keepMaxUnread . " ". $this->nbPendingNotRead . " " . $this->name);
 		if ($keepMaxUnread > 0 && $this->nbNotRead(false) + $this->nbPendingNotRead > $keepMaxUnread) {
 			return FreshRSS_Factory::createFeedDao()->keepMaxUnread($this->id(), max(0, $keepMaxUnread - $this->nbPendingNotRead));
 		}
