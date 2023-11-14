@@ -479,7 +479,7 @@ WHERE id_feed=:id_feed1 AND is_read=0 AND id <= (SELECT e3.id FROM (
 	OFFSET :limit) e3)
 SQL;
 
-Minz_Log::warning(__METHOD__ . " " . $id . " " . $sql);
+Minz_Log::warning(__METHOD__ . " " . $id . " " . " " . $n . " " . $sql);
 
 		if (($stm = $this->pdo->prepare($sql)) &&
 			$stm->bindParam(':id_feed1', $id, PDO::PARAM_INT) &&
