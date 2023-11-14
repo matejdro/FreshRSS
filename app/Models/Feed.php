@@ -761,7 +761,7 @@ class FreshRSS_Feed extends Minz_Model {
 			$keepMaxUnread = FreshRSS_Context::$user_conf->mark_when['max_n_unread'];
 		}
 		$keepMaxUnread = (int)$keepMaxUnread;
-		Minz_Log::info(__METHOD__ . $keepMaxUnread . $this->nbPendingNotRead)
+		Minz_Log::info(__METHOD__ . $keepMaxUnread . $this->nbPendingNotRead);
 		if ($keepMaxUnread > 0 && $this->nbNotRead(false) + $this->nbPendingNotRead > $keepMaxUnread) {
 			return FreshRSS_Factory::createFeedDao()->keepMaxUnread($this->id(), max(0, $keepMaxUnread - $this->nbPendingNotRead));
 		}
