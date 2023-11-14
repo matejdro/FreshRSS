@@ -497,6 +497,8 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 								continue;
 							}
 
+							Minz_Log::debug(__METHOD__ . " new existing entry " . $entry->isRead() . " " . $entry->title());
+							
 							if (!$entry->isRead()) {
 								$needFeedCacheRefresh = true;
 								$feed->incPendingUnread();	//Maybe
@@ -538,6 +540,8 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 							$entryDAO->beginTransaction();
 						}
 						$entryDAO->addEntry($entry->toArray(), true);
+
+						Minz_Log::debug(__METHOD__ . " new entry " . $entry->isRead() . " " . $entry->title());
 
 						if (!$entry->isRead()) {
 							$feed->incPendingUnread();
